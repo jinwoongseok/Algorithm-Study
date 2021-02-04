@@ -13,7 +13,6 @@
 	자신을 제외한 모든 사람들이 자신의 키 순서를 알 때 (cnt[i]==n-1)의 경우를 세준다.
 */
 
-
 #include <iostream>
 #include <vector>
 #define INF 987654321

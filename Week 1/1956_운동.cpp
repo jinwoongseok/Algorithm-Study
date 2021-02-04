@@ -12,7 +12,6 @@
 	이때 사이클을 형성해야하므로, road[i][j],road[j][i]의 값이 둘다 INF가 아니어야한다.
 */
 
-
 #include <iostream>
 #include <vector>
 #define INF 987654321
