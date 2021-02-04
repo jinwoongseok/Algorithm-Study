@@ -10,7 +10,7 @@ bool visited[100][100];
 int dx[]={0,0,-1,1};
 int dy[]={-1,1,0,0};
 
-
+//색약 없는 사람 탐색
 void normal(int sx, int sy){
     visited[sy][sx]=true;
     queue<pii> q;
@@ -25,13 +25,14 @@ void normal(int sx, int sy){
             int ny=y+dy[i];
             if(nx<0 || ny<0 || nx >=n || ny >= n)continue;
             if(visited[ny][nx])continue;
+            //rgb모두 구분 가능
             if(map[ny][nx]!=cur)continue;
             visited[ny][nx]=true;
             q.push({nx,ny});
         }
     }
 }
-
+//적녹 색약 가진 사람 탐색
 void red_green(int sx, int sy){
     visited[sy][sx]=true;
     queue<pii> q;
@@ -46,9 +47,11 @@ void red_green(int sx, int sy){
             int ny=y+dy[i];
             if(nx<0 || ny<0 || nx >=n || ny >= n)continue;
             if(visited[ny][nx])continue;
+            //만약 현재 b라면 rg 인접시 continue
             if(cur=='B'){
                 if(map[ny][nx]!=cur)continue;
             }
+            //만약 현재 rg라면 b 인접시 continue
             else{
                 if(map[ny][nx]=='B')continue;
             }
@@ -69,6 +72,7 @@ void solution(){
             }
         }
     }
+    //visited 배열 초기화
     memset(visited,0,sizeof(visited));
     for(int i=0;i<n;i++){
         for(int j=0;j<n;j++){

@@ -5,7 +5,6 @@ using namespace std;
 #define MAX 500
 #define endl "\n"
 int map[MAX][MAX];
-bool visited[MAX][MAX];
 int m, n;
 int dx[]={0,0,-1,1};
 int dy[]={-1,1,0,0};
@@ -13,9 +12,11 @@ int result;
 int dp[MAX][MAX];
 
 int dfs(int x, int y){
+    //기저 사례
     if(x==n-1 && y==m-1){
         return 1;
     }
+    //메모이제이션
     int& ret=dp[y][x];
     if(ret!=-1)return ret;
     ret=0;
