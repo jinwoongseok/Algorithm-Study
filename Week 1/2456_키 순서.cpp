@@ -40,12 +40,7 @@ void solve() {
 			cnt[i]++; cnt[j]++;
 		}
 	}
-	for (int i = 1; i <= n; i++) {
-		for (int j = 1; j <= n; j++) {
-			cout << student[i][j] << ' ';
-		}
-		cout << '\n';
-	}
+
 }
 int main() {
 	cin >> n >> m;
