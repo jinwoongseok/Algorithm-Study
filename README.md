@@ -54,4 +54,18 @@
       - N진수 게임,방금 그곡
   - 2018 카카오 블라인드, 2019 카카오 블라인드 (2021-03-14)
       - 압축 , 오픈채팅방, 길 찾기 게임
+### Week 7:
+  - 백준 알고리즘 (2021-03-16)
+    - [탑](https://www.acmicpc.net/problem/2493), [후위 표기식](https://www.acmicpc.net/problem/1918)
+      - 더 풀어 볼 문제: [수 묶기](https://www.acmicpc.net/problem/1744), [카드 정렬하기](https://www.acmicpc.net/problem/1715
+)
+  - 백준 알고리즘 (2021-03-18)
+    - [뱀](https://www.acmicpc.net/problem/3190), [문자열 폭발](https://www.acmicpc.net/problem/9935)
+      - 더 풀어 볼 문제: [단어 수학](https://www.acmicpc.net/problem/1339)
+  - 2019 카카오 블라인드 (2021-03-21)
+    - 실패율, 후보키, 매칭 점수
+
+
+`Week7 코딩 테스트 관련: 시뮬레이션, 구현, 이분탐색, 투포인터, 완전탐색, 자료구조, 정렬, 문자열, DFS/BFS, 해시 맵, 트리`
+
  
