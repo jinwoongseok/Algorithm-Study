@@ -60,8 +60,8 @@
       - 더 풀어 볼 문제: [수 묶기](https://www.acmicpc.net/problem/1744), [카드 정렬하기](https://www.acmicpc.net/problem/1715
 )
   - 백준 알고리즘 (2021-03-18)
-    - [뱀](https://www.acmicpc.net/problem/3190), [문자열 폭발](https://www.acmicpc.net/problem/9935)
-      - 더 풀어 볼 문제: [단어 수학](https://www.acmicpc.net/problem/1339)
+    - [회의실 배정](https://www.acmicpc.net/problem/1931), [문자열 폭발](https://www.acmicpc.net/problem/9935)
+      - 더 풀어 볼 문제: [단어 수학](https://www.acmicpc.net/problem/1339), [뱀](https://www.acmicpc.net/problem/3190)
   - 2019 카카오 블라인드 (2021-03-21)
     - 실패율, 후보키, 매칭 점수
 
