@@ -1,17 +1,21 @@
-#include <iostream>
 #include <string>
 #include <vector>
+#include <sstream>
 using namespace std;
 
 
-// 악보 바꾸는 함수
-string change(string change_melody)
-{
+// 악보 바꾸는 함수 , #이 붙은 음계는 소문자로 변환.
+string change(string change_melody) {
     string tmp = "";
 
     for (int i = 0; i < change_melody.size(); i++) {
-        if (i!=change_melody.size()-1&&change_melody[i + 1] == '#') {
-            tmp += c;
+        if (i!=change_melody.size()-1 && change_melody[i + 1] == '#') {
+            if(change_melody[i]=='C') tmp += 'c';
+            else if(change_melody[i]=='D') tmp += 'd';
+            else if(change_melody[i]=='F') tmp += 'f';
+            else if(change_melody[i]=='G') tmp += 'g';
+            else if(change_melody[i]=='A') tmp += 'a';
+                
             i++;
         }
         else
@@ -21,34 +25,56 @@ string change(string change_melody)
 }
 string solution(string m, vector<string> musicinfos) {
     string answer = "";
-    return answer;
 
+    m=change(m); // 멜로디 변환
+    int ans_time=0; // 재생된 최대 시간 측정
     for (int i = 0; i < musicinfos.size(); i++) {
-        int play = stoi(musicinfos[i].substr(6, 2)) * 60 + stoi(musicinfos[i].substr(9, 2)) - stoi(musicinfos[i].substr(0, 2)) * 60 - stoi(musicinfos[i].substr(3, 2));
+        istringstream ss(musicinfos[i]); 
+        string buffer;
+        int idx=0; int time=0; 
+        int sh=0; int sm=0;
+        int eh=0; int em=0;
+        int line=0;
+        string title;
+        string song;
+        
+        while (getline(ss, buffer, ',')) { // 문자열 parsing (sstream을 이용) 
+            if(idx==0){
+                sh=stoi(buffer.substr(0,2))*60;
+                sm=stoi(buffer.substr(3,2));
+            }
+            else if(idx==1){
+                eh=stoi(buffer.substr(0,2))*60;
+                em=stoi(buffer.substr(3,2));
+            }
+            else if(idx==2){
+                title=buffer;
+            }
+            else if(idx==3){
+                song=change(buffer);
+            }
+            idx++;
+        }
+        time = (em+eh)-(sm+sh); // time : 재생시간, title : 곡 제목, song : 악보
+        
+        if(song.size() < time) { // 조건1. 악보의 길이가 재생된 시간보다 작을 때 (악보 늘림)
+            string tmp = song;
+        
+            for(int j = 1; j < time / tmp.size(); j++)
+                song += tmp;
+            for(int j = 0; j < time % tmp.size(); j++)
+                song += tmp[j];
+        }
+        else  // 조건2. 악보의 길이가 재생된 시간보다 크거나 같을 때 (악보 자르기)
+            song = song.substr(0, time);
+        
+         if(song.find(m) != string::npos) { // find함수를 이용해 멜로디가 악보에 포함 되는지 확인.
+            if(ans_time < time) { // 포함되고, 최대 재생시간보다 큰 재생시간을 가질 때 
+                answer = title;
+                ans_time = time;
+            }
+         }
     }
+    if (answer == "") answer = "(None)";
+    return answer;
 }
-/*
-풀이
-1. 구조체를 만들어 재생시간(play) (끝난시간-시작시간), title, melody 를 넣는다.
-- melody 처리? # 처리.
-2. melody.size() < play : 음악 반복 (재생된 시간 만큼 멜로디 이어붙이기 )
-3. melody.size() > play : 처음부터 재생시간만큼 멜로디를 잘라준다. (예시 1)
-4. melody와 m 비교하여 찾아주기 
-*/
-int main() {
-    return 0;
-}
-
-/*
-* 조건1. 멜로디 기억
-* 조건 2. 네오가 기억하는 멜로디는 음악 끝부분과 처음 부분 일 수도 (한곡재생)
-* 조건 3. 네오가 기억한 멜로디가 있다해도 (처음 or 끝) 그 곡이 기억하는 곡이 아닐 수도 ( 중간에서 끊기 )
-* 
-* 기억한 멜로디를 재생 시간과 제공된 악보를 보면서 비교.
-* 음악제목, 재생이 시작되고 끝난시간, 악보 
-* C, C#, D, D#, E, F, F#, G, G#, A, A#, B 12개이다.
-* 각 음은 1분에 1개씩 재생.
-* 음악은 처음부터 재생. 
-음악 길이 > 재생된 시간 => 처음부터 재생시간 만큼 재생
-음악 길이 < 재생된 시간 =>음악이 반복
-*/
